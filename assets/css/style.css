@@ -1,4 +1,12 @@
 body {
-    background-color: darkslategrey;
-    color: black;
+    background-image: url(https://img.theculturetrip.com/840x440/smart//wp-content/uploads/2016/09/main-bar-at-tir-na-nog.jpg);
+    color: white;
+    font-size: large;
 }
+
+.jumbotron{
+    height: 300px;
+    color: gray;
+    background-color:darkblue;
+}
+
