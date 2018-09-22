@@ -10,12 +10,13 @@ var guessesLeft = 10
 var winsText = document.getElementById("wins");
 var lossesText = document.getElementById("losses");
 var guessedLeftText = document.getElementById("lives");
-
 //-select one randomly(random word generator)
 var wordGenerator = function() {
     var wordIndex = Math.floor(Math.random() * wordArray.length);
     return wordArray[wordIndex];
 }
+
+
 
 var randomWord = wordGenerator();
     console.log("random : " + randomWord);
@@ -41,34 +42,49 @@ document.onkeyup = function(event) {
     var displayWords = document.getElementById("display-words");
     //makes it lowercase
     lettersGuessed.push(event.key.toLowerCase);
-
+    userGuess(event.key);
     //display
     console.log(tempString);
     displayWords.innerHTML = tempString;
     
-    resultIndex = wordArray[Math.floor(Math.random() * wordArray.length)]; 
+    //resultIndex = wordArray[Math.floor(Math.random() * wordArray.length)]; 
+    //resultIndex = randomWord; 
 
-    var result = [];
 
-    for (var i=0; i<result.length; i++) {
-        if (event.key === result[i]) {
-            lettersGuessed[i] = event.key;
-        }
-    }
+    // var result = [];
+
+    // for (var i=0; i<result.length; i++) {
+    //     if (event.key === result[i]) {
+    //         lettersGuessed[i] = event.key;
+    //     }
+    // }
 }
+//We need to be able to compare two things exactly alike anbd know their positions are the same
+/*
+var blanksArray = '_ _ _ ';
+var word = 'cat'
 
+
+
+
+*/
 function userGuess(letter) {
-    for(var i=0; i < wordArray[resultIndex].length; i++) {
-        if(wordArray[resultIndex][i] === letter) {
-            tempString.push(i);
+    for(var i=0; i < randomWord.split('').length; i++) {
+        if(randomWord[i] === letter) {
+            console.log('hit if', letter, randomWord, tempString
+        );
+            console.log(tempString.split(' ')[i].splice(i, 1, letter));
+        }
+        else {
+            //this means they failed to choose a letter, we need to add it to the chosen letters and take away a guess
         }
     }
 
 //should replace _ with letter but doesnt
-for (var i = 0; i<result.length; i++) {
-    wordArray[result[i]] = letter;
-}
-}
+// for (var i = 0; i<result.length; i++) {
+//     wordArray[result[i]] = letter;
+// }
+ }
 
 var resetGame = function() {
     guessesLeft = 10;

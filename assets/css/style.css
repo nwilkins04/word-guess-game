@@ -1,13 +1,33 @@
 body {
-    /*background-image: url(https://img.theculturetrip.com/840x440/smart//wp-content/uploads/2016/09/main-bar-at-tir-na-nog.jpg);*/
-    background-color: darkcyan;
+    /*background-color: darkcyan; */
+    background-image: url(../images/connectwork/connectwork.png);
     color: white;
     font-size: large;
 }
 
-.jumbotron{
-    height: 300px;
-    color: gray;
-    background-color:darkblue;
+h1 {
+    color: turquoise;
+    text-align: center;
+    font-style: inherit;
+    font-size: 50px;
 }
 
+.first-pic {
+    height: 150px;
+    margin-left: 50px;
+}
+
+.second-pic {
+    height: 150px;
+    margin-left: 925px;
+}
+
+.words {
+    background-color: darkcyan;
+    text-align: center;
+    width: 50%;
+    margin-left: 375px;
+    font-size: 30px;
+    border-style: dashed;
+    border-color: aqua;
+}
