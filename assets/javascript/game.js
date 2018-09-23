@@ -9,11 +9,13 @@ var guessesLeft = 10
 //connects to ID in HTML
 var winsText = document.getElementById("wins");
 var lossesText = document.getElementById("losses");
-var guessedLeftText = document.getElementById("lives");
+var livesLeft = document.getElementById("lives");
+var guessLeft = document.getElementById("letters-guessed");
+
 //-select one randomly(random word generator)
 var wordGenerator = function() {
     var wordIndex = Math.floor(Math.random() * wordArray.length);
-    return wordArray[wordIndex];
+    return wordArray[wordIndex].split('');
 }
 
 
@@ -21,31 +23,38 @@ var wordGenerator = function() {
 var randomWord = wordGenerator();
     console.log("random : " + randomWord);
 
-var tempString = "";
+var blanksArray = [];
 
 winsText.textContent = "Wins: " + wins;
 lossesText.textContent = "Losses " + losses;
-guessedLeftText.textContent = "Guesses Left: " + guessesLeft;
-lettersGuessed.textContent = "Letters Guessed: ";
+livesLeft.textContent = "Guesses Left: " + guessesLeft;
+guessLeft.textContent = "Letters Guessed: ";
 
 //picks random word and displays blanks
 for (var i = 0; i < randomWord.length; i++) {
-   if (lettersGuessed.includes(randomWord[i])) {
-        tempString += randomWord[i] + " ";
-    } 
-    else {
-    tempString += "_ ";
+    if(randomWord[i] === ' ') {
+        blanksArray.push('    ');
     }
+    else{
+        blanksArray.push('_');
+    }
+};
+displayWord(blanksArray);
 
+function displayWord(array) {
+    console.log(array);
+    var displayWords = document.getElementById("display-words");
+    displayWords.innerHTML = `<span>${array.join(' ')}</span>`;  
+}
+
+console.error(blanksArray.join(' '));
 //press any key to get started a.k.a. starts the game
 document.onkeyup = function(event) {
-    var displayWords = document.getElementById("display-words");
     //makes it lowercase
-    lettersGuessed.push(event.key.toLowerCase);
-    userGuess(event.key);
+    
+    userGuess(event.key.toLowerCase());
     //display
-    console.log(tempString);
-    displayWords.innerHTML = tempString;
+   
     
     //resultIndex = wordArray[Math.floor(Math.random() * wordArray.length)]; 
     //resultIndex = randomWord; 
@@ -69,17 +78,20 @@ var word = 'cat'
 
 */
 function userGuess(letter) {
-    for(var i=0; i < randomWord.split('').length; i++) {
+    for(var i=0; i < randomWord.length; i++) {
         if(randomWord[i] === letter) {
-            console.log('hit if', letter, randomWord, tempString
-        );
-            console.log(tempString.split(' ')[i].splice(i, 1, letter));
+            console.log('hit if', letter, randomWord, blanksArray)
+        ;
+            blanksArray.splice(i, 1, letter);
+            displayWord(blanksArray);
+            return;
         }
-        else {
-            //this means they failed to choose a letter, we need to add it to the chosen letters and take away a guess
-        }
+    
     }
-
+    lettersGuessed.push(event.key.toLowerCase());
+            guessesLeft--;
+            livesLeft.textContent = "Guesses Left: " + guessesLeft;
+            guessLeft.textContent = "Letters Guessed: " + lettersGuessed.join(', ');
 //should replace _ with letter but doesnt
 // for (var i = 0; i<result.length; i++) {
 //     wordArray[result[i]] = letter;
@@ -89,5 +101,5 @@ function userGuess(letter) {
 var resetGame = function() {
     guessesLeft = 10;
 }
-}
+
 //cant get letters to show up on screen, dont understand JS nor how to complete assignment.
