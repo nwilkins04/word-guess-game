@@ -20,6 +20,7 @@ h1 {
 .second-pic {
     height: 150px;
     margin-left: 925px;
+    float: right
 }
 
 .words {
